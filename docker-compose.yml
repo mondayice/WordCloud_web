@@ -1,0 +1,42 @@
+# WordCloud Studio · docker-compose
+# 用法：
+#   docker compose up -d --build    构建并后台启动
+#   docker compose logs -f          查看日志
+#   docker compose down             停止并清理
+
+services:
+  wordcloud:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: wordcloud-studio:latest
+    container_name: wordcloud-studio
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - WC_HOST=0.0.0.0
+      - WC_PORT=8000
+      - WC_MIN_TEXT_CHARS=20
+      - WC_MAX_TEXT_FILE_BYTES=5242880
+      - WC_MAX_MASK_IMAGE_BYTES=10485760
+      - TZ=Asia/Shanghai
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://127.0.0.1:8000/api/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 30s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "2.0"
+        reservations:
+          memory: 256M
+          cpus: "0.5"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

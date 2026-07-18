@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# 字体：不从主机 COPY，由 BuildKit 在构建期下载（避免本地路径依赖）
+backend/app/fonts/*.otf
+backend/app/fonts/*.ttf
+
+# 前端
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# 前端构建产物（由 Stage 1 在容器内重新构建，避免与主机产物混淆）
+backend/static/
+
+# 版本控制与工具
+.git/
+.gitignore
+.zcode/
+
+# 设计文档（已 gitignore，不入库）
+docs/
+设计文档.md
+
+# 测试样本与临时文件
+2026年政府工作报告.txt
+*.tmp
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Docker 自身
+Dockerfile
+.dockerignore
+docker-compose.yml
+docker-compose.*.yml
+
+# 其他
+README.md
+CHANGELOG.md
+start.bat
+start.sh
+backend/.env
+backend/.env.local
+backend/.env.example
+backend/requirements-dev.txt
+backend/tests/
