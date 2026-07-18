@@ -50,3 +50,8 @@ docs/
 
 # ZCode 工具内部产物
 .zcode/
+
+# 测试样本文件
+*.txt
+!backend/app/data/stopwords/*.txt
+!backend/app/data/presets.json
