@@ -65,7 +65,7 @@ def _do_render(
     else:
         raise BizError(400, f"不支持的形状：{shape}", "INVALID_SHAPE")
 
-    # 2. 渲染
+    # 2. 渲染（字号参数已在外层解析好）
     renderer = WordCloudRenderer(fonts)
     return renderer.render(
         frequencies=frequencies,
@@ -96,6 +96,10 @@ async def generate_wordcloud(
     min_font_size: int = Form(default=8),
     max_font_size: int | None = Form(default=None),
     rotation_steps: int = Form(default=0),
+    # 字号自定义开关：True 时使用 min/max_font_size；False 时自动
+    font_custom_enabled: bool = Form(default=False),
+    custom_min_font_size: int | None = Form(default=None),
+    custom_max_font_size: int | None = Form(default=None),
     # 文本源（三选一）
     frequencies: str | None = Form(default=None),
     text: str | None = Form(default=None),
@@ -167,7 +171,15 @@ async def generate_wordcloud(
     if shape == "mask" and mask_image:
         mask_bytes = await validate_mask_image(mask_image)
 
-    # 5. 渲染 + 导出（放线程池避免阻塞事件循环）
+    # 5. 字号参数解析：font_custom_enabled=True 时用 custom_min/custom_max
+    #    否则保持默认（min=8, max=None 自动）
+    if font_custom_enabled:
+        if custom_min_font_size is not None:
+            min_font_size = custom_min_font_size
+        if custom_max_font_size is not None:
+            max_font_size = custom_max_font_size
+
+    # 6. 渲染 + 导出（放线程池避免阻塞事件循环）
     fonts = request.app.state.fonts
     render_result = await run_in_threadpool(
         _do_render,

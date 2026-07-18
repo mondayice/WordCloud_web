@@ -82,9 +82,11 @@ export interface GenerateWordCloudParams {
   backgroundColor: string
   width: number
   height: number
-  preferHorizontal: number
-  minFontSize: number
   rotationSteps: number
+  // 字号控制：fontCustomEnabled=false 时后端自动；true 时用 min/max
+  fontCustomEnabled: boolean
+  minFontSize: number
+  maxFontSize: number
   format: 'png' | 'svg'
 }
 
@@ -117,9 +119,13 @@ export async function generateWordCloud(
   fd.append('background_color', params.backgroundColor)
   fd.append('width', String(params.width))
   fd.append('height', String(params.height))
-  fd.append('prefer_horizontal', String(params.preferHorizontal))
-  fd.append('min_font_size', String(params.minFontSize))
   fd.append('rotation_steps', String(params.rotationSteps))
+  // 字号控制：font_custom_enabled + 自定义 min/max（仅启用时后端读取）
+  fd.append('font_custom_enabled', String(params.fontCustomEnabled))
+  if (params.fontCustomEnabled) {
+    fd.append('custom_min_font_size', String(params.minFontSize))
+    fd.append('custom_max_font_size', String(params.maxFontSize))
+  }
   fd.append('format', params.format)
 
   const res = await fetch(`${API_BASE}/wordcloud`, {

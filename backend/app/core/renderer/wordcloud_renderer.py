@@ -71,5 +71,7 @@ class WordCloudRenderer:
             wc_kwargs["max_font_size"] = max_font_size
 
         wc = WordCloud(**wc_kwargs)
-        wc.generate_from_frequencies(frequencies)  # 直接传词频
+        # 关键：max_font_size 必须显式传给 generate_from_frequencies 才会生效
+        # 否则库会自动计算（覆盖构造函数的设置）
+        wc.generate_from_frequencies(frequencies, max_font_size=max_font_size)
         return RenderResult(wc)

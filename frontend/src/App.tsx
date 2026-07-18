@@ -101,9 +101,10 @@ function GenerateButton() {
         backgroundColor: store.backgroundColor,
         width: store.sizePreset.width,
         height: store.sizePreset.height,
-        preferHorizontal: store.preferHorizontal,
-        minFontSize: store.minFontSize,
         rotationSteps: store.rotationSteps,
+        fontCustomEnabled: store.fontCustomEnabled,
+        minFontSize: store.minFontSize,
+        maxFontSize: store.maxFontSize,
         format: 'png', // 预览固定 PNG
       })
       setPreview(blob, format)

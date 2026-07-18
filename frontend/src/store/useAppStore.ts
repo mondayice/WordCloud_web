@@ -28,9 +28,11 @@ interface AppState {
   selectedColor: SelectedColor
   editingScheme: ColorScheme | null
   backgroundColor: string
-  preferHorizontal: number
-  minFontSize: number
   rotationSteps: number
+  // 字号控制：默认关闭，开启后使用 min/max 滑块值
+  fontCustomEnabled: boolean
+  minFontSize: number
+  maxFontSize: number
   sizePreset: SizePreset
 
   // ===== 结果（不持久化）=====
@@ -58,9 +60,10 @@ interface AppState {
   setShape: (s: ShapePreset['key']) => void
   setMaskImage: (f: File | null) => void
   setBackgroundColor: (c: string) => void
-  setPreferHorizontal: (n: number) => void
-  setMinFontSize: (n: number) => void
   setRotationSteps: (n: number) => void
+  setFontCustomEnabled: (enabled: boolean) => void
+  setMinFontSize: (n: number) => void
+  setMaxFontSize: (n: number) => void
   setSizePreset: (s: SizePreset) => void
   setTheme: (t: ThemePreference) => void
   setFrequencies: (f: WordFrequency[], total: number, unique: number) => void
@@ -111,9 +114,10 @@ export const useAppStore = create<AppState>()(
       selectedColor: { type: 'preset', key: 'sunset' },
       editingScheme: null,
       backgroundColor: '#FAFAF9',
-      preferHorizontal: 0.9,
-      minFontSize: 8,
       rotationSteps: 0,
+      fontCustomEnabled: false,
+      minFontSize: 10,
+      maxFontSize: 100,
       sizePreset: DEFAULT_SIZE_PRESET,
 
       frequencies: [],
@@ -138,9 +142,10 @@ export const useAppStore = create<AppState>()(
       setShape: (s) => set({ shape: s }),
       setMaskImage: (f) => set({ maskImage: f }),
       setBackgroundColor: (c) => set({ backgroundColor: c }),
-      setPreferHorizontal: (n) => set({ preferHorizontal: n }),
-      setMinFontSize: (n) => set({ minFontSize: n }),
       setRotationSteps: (n) => set({ rotationSteps: n }),
+      setFontCustomEnabled: (enabled) => set({ fontCustomEnabled: enabled }),
+      setMinFontSize: (n) => set({ minFontSize: n }),
+      setMaxFontSize: (n) => set({ maxFontSize: n }),
       setSizePreset: (s) => set({ sizePreset: s }),
       setTheme: (t) => set({ theme: t }),
       setFrequencies: (f, total, unique) =>

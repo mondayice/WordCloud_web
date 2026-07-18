@@ -40,9 +40,10 @@ export function ExportBar({ presets }: ExportBarProps) {
         backgroundColor: store.backgroundColor,
         width: preset.width,
         height: preset.height,
-        preferHorizontal: store.preferHorizontal,
-        minFontSize: store.minFontSize,
         rotationSteps: store.rotationSteps,
+        fontCustomEnabled: store.fontCustomEnabled,
+        minFontSize: store.minFontSize,
+        maxFontSize: store.maxFontSize,
         format,
       })
       const filename = `wordcloud-${preset.key}-${preset.width}x${preset.height}.${format}`
