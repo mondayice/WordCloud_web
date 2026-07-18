@@ -9,6 +9,68 @@
 
 待发布内容将在此处累积。
 
+## [0.2.0] - 2026-07-18
+
+第二次发布。聚焦样式表达力、部署便捷性和工程化。
+
+### 新增
+
+#### 配色方案
+- **新增预设配色 `dusk`（暮色）**：6 色 RGB 来源 `(37,43,49) (94,102,104) (193,200,199) (246,250,251) (212,156,107) (0,0,0)`，冷灰蓝调 + 一个橙色点缀，莫兰迪风格
+- 配色总数从 5 套增至 **6 套**
+
+#### 样式控制
+- **旋转角度扩展为 5 档**：`0° / 30° / 45° / 60° / 90°`（原仅 0°/90° 两档）
+- **字号自由控制**：新增「字号范围」开关 + 双滑块
+  - 关闭时使用 wordcloud 库自动算法（根据画布尺寸自适应）
+  - 开启后用 min/max 滑块限制实际渲染字号（min 4–50px / max 50–300px）
+  - min/max 互相钳制，防止反转
+  - 实测验证：min=20 max=80 → 实际渲染字号 27–80px，严格遵守
+
+#### 部署与运维
+- **Docker 支持**：新增 `Dockerfile`（多阶段构建，node 构建前端 → python 运行后端）+ `docker-compose.yml`
+  - 镜像大小约 350 MB
+  - 资源限制 1 GB 内存 / 2 CPU
+  - HEALTHCHECK 走 `/api/health`
+  - 字体在构建期自动下载（不依赖主机）
+- **一键启动脚本**：`start.bat`（Windows，GBK 编码 + CRLF）+ `start.sh`（macOS/Linux/Git Bash）
+  - 自动检查 Python / 依赖 / 字体 / 前端构建
+  - 缺失时自动安装或给出修复指引
+  - 启动后自动打开浏览器
+
+#### 文档与示例
+- **jieba 自定义字典示例文件**：`jieba自定义字典示例.txt`
+  - 6 大类共 56 个词条（AI/科技、设计美学、品牌产品、网络热词、人名、地名机构）
+  - 完整格式注释（词 [词频] [词性]）
+  - 实测验证：加载后"深度学习/机器学习/字节跳动"等被整体识别
+
+### 变更
+
+- **删除「水平排版比例」滑块**：与旋转角度功能重叠（都映射到 wordcloud 的 `prefer_horizontal`），保留两个会让用户困惑
+- **旋转角度描述改进**：Chip 文字从 `0°/90°` 改为 `全水平/全垂直`，hover 显示具体水平/垂直百分比
+- **后端默认旋转角度** 从 90 改为 0（全水平，更稳妥的默认）
+- **修复 wordcloud 库 `max_font_size` 传递 bug**：必须显式传给 `generate_from_frequencies()`，否则被自动算法覆盖（这是库的隐蔽行为，已在 wordcloud_renderer.py 修复）
+- **`.gitignore` 加固**：`*.txt` 通配规则（保留 stopwords/presets.json 例外），排除 `docs/` `设计文档.md` `.zcode/` 等内部资料
+
+### 测试
+
+- 后端测试从 65 个增至 **71 个**（+6）：
+  - `test_config_includes_dusk_scheme`：dusk 配色端到端
+  - `test_rotation_mapping.py`：5 个旋转角度映射单元测试
+- 字号控制真实生效验证（直接读 `wc.layout_` 字号范围，断言 min/max 被严格遵守）
+
+### 性能数据（实测）
+
+| 操作 | 耗时 |
+|---|---|
+| GET /api/health | p50 1.1 ms |
+| GET /api/config | p50 0.9 ms |
+| POST /api/tokenize（58 KB 中文） | avg 89 ms |
+| POST /api/wordcloud（1080p, 200 词） | ~3.7 s |
+| POST /api/wordcloud（4K, 200 词） | ~18 s |
+
+资源占用：内存 137 MB（RSS），Docker 镜像约 350 MB。
+
 ## [0.1.0] - 2026-07-18
 
 首个公开发布版本。从设计文档到完整落地，覆盖中英文分词、词云生成、可视化预览、多格式导出全流程。
@@ -87,5 +149,6 @@
 - 自定义配色持久化到浏览器 localStorage，跨设备不同步
 - 滚轮缩放在非 HTTPS / 非 localhost 环境下，剪贴板 API 可能受限
 
-[Unreleased]: https://github.com/mondayice/WordCloud_web/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/mondayice/WordCloud_web/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/mondayice/WordCloud_web/releases/tag/v0.2.0
 [0.1.0]: https://github.com/mondayice/WordCloud_web/releases/tag/v0.1.0
