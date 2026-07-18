@@ -33,5 +33,5 @@ class Renderer(Protocol):
         prefer_horizontal: float = 0.9,
         min_font_size: int = 8,
         max_font_size: int | None = None,
-        rotation_steps: int = 90,
+        rotation_steps: int = 0,
     ) -> RenderResult: ...

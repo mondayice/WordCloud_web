@@ -12,6 +12,8 @@ COLOR_SCHEMES: dict[str, list[str]] = {
     "ocean": ["#0C4A6E", "#0369A1", "#0EA5E9", "#7DD3FC"],
     "forest": ["#14532D", "#16A34A", "#4ADE80", "#BBF7D0"],
     "vibrant": ["#DC2626", "#EA580C", "#EAB308", "#16A34A", "#2563EB", "#7C3AED"],
+    # 暮色：冷灰蓝调 + 一个橙色点缀（#D49C6B），偏莫兰迪风格
+    "dusk": ["#252B31", "#5E6668", "#C1C8C7", "#F6FAFB", "#D49C6B", "#000000"],
 }
 
 # 自定义配色颜色数量限制（与前端 custom_color_limits 一致，是唯一真相源）

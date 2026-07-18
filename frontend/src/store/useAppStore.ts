@@ -113,7 +113,7 @@ export const useAppStore = create<AppState>()(
       backgroundColor: '#FAFAF9',
       preferHorizontal: 0.9,
       minFontSize: 8,
-      rotationSteps: 90,
+      rotationSteps: 0,
       sizePreset: DEFAULT_SIZE_PRESET,
 
       frequencies: [],

@@ -48,17 +48,27 @@ export function StyleSection({ presetColorSchemes }: StyleSectionProps) {
       {/* 旋转角度 */}
       <div className="flex flex-col gap-1.5">
         <span className="text-2xs text-ink-faint">旋转角度</span>
-        <div className="flex gap-2">
-          {[0, 90].map((deg) => (
+        <div className="flex flex-wrap gap-1.5">
+          {[0, 30, 45, 60, 90].map((deg) => (
             <Chip
               key={deg}
               active={rotationSteps === deg}
               onClick={() => setRotationSteps(deg)}
+              title={
+                deg === 0
+                  ? '全水平'
+                  : deg === 90
+                    ? '全垂直'
+                    : `约 ${(100 - deg * 100 / 90).toFixed(0)}% 水平 / ${(deg * 100 / 90).toFixed(0)}% 垂直`
+              }
             >
-              {deg === 0 ? '不旋转' : `${deg}°`}
+              {deg === 0 ? '水平' : `${deg}°`}
             </Chip>
           ))}
         </div>
+        <p className="text-2xs text-ink-faint">
+          角度越大垂直词越多（0° 全水平 → 90° 全垂直）
+        </p>
       </div>
     </section>
   )

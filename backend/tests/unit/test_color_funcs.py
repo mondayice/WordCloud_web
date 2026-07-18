@@ -126,8 +126,8 @@ def test_build_color_func_large_font_uses_first_colors() -> None:
 
 
 def test_color_schemes_have_required_keys() -> None:
-    """预设配色必须包含 5 个 key。"""
-    expected = {"stone", "sunset", "ocean", "forest", "vibrant"}
+    """预设配色必须包含 6 个 key（含 dusk 暮色）。"""
+    expected = {"stone", "sunset", "ocean", "forest", "vibrant", "dusk"}
     assert set(COLOR_SCHEMES.keys()) == expected
 
 

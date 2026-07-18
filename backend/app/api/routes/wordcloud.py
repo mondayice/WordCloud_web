@@ -95,7 +95,7 @@ async def generate_wordcloud(
     prefer_horizontal: float = Form(default=0.9),
     min_font_size: int = Form(default=8),
     max_font_size: int | None = Form(default=None),
-    rotation_steps: int = Form(default=90),
+    rotation_steps: int = Form(default=0),
     # 文本源（三选一）
     frequencies: str | None = Form(default=None),
     text: str | None = Form(default=None),

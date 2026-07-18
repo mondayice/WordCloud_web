@@ -12,7 +12,8 @@
     {"key": "sunset", "label": "日落", "colors": ["#EA580C", "#F97316", "#FB923C", "#FDBA74"], "builtin": true},
     {"key": "ocean", "label": "海洋", "colors": ["#0C4A6E", "#0369A1", "#0EA5E9", "#7DD3FC"], "builtin": true},
     {"key": "forest", "label": "森林", "colors": ["#14532D", "#16A34A", "#4ADE80", "#BBF7D0"], "builtin": true},
-    {"key": "vibrant", "label": "鲜活", "colors": ["#DC2626", "#EA580C", "#EAB308", "#16A34A", "#2563EB", "#7C3AED"], "builtin": true}
+    {"key": "vibrant", "label": "鲜活", "colors": ["#DC2626", "#EA580C", "#EAB308", "#16A34A", "#2563EB", "#7C3AED"], "builtin": true},
+    {"key": "dusk", "label": "暮色", "colors": ["#252B31", "#5E6668", "#C1C8C7", "#F6FAFB", "#D49C6B", "#000000"], "builtin": true}
   ],
   "custom_color_limits": {"min": 2, "max": 12},
   "size_presets": [
