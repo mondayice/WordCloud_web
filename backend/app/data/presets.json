@@ -1,0 +1,26 @@
+{
+  "shapes": [
+    {"key": "fill", "label": "铺满", "requires_mask": false},
+    {"key": "diamond", "label": "菱形", "requires_mask": false},
+    {"key": "heart", "label": "心形", "requires_mask": false},
+    {"key": "circle", "label": "圆形", "requires_mask": false},
+    {"key": "star", "label": "星型", "requires_mask": false},
+    {"key": "mask", "label": "自定义遮罩", "requires_mask": true}
+  ],
+  "color_schemes": [
+    {"key": "stone", "label": "暖灰", "colors": ["#1C1917", "#57534E", "#A8A29E", "#D6D3D1"], "builtin": true},
+    {"key": "sunset", "label": "日落", "colors": ["#EA580C", "#F97316", "#FB923C", "#FDBA74"], "builtin": true},
+    {"key": "ocean", "label": "海洋", "colors": ["#0C4A6E", "#0369A1", "#0EA5E9", "#7DD3FC"], "builtin": true},
+    {"key": "forest", "label": "森林", "colors": ["#14532D", "#16A34A", "#4ADE80", "#BBF7D0"], "builtin": true},
+    {"key": "vibrant", "label": "鲜活", "colors": ["#DC2626", "#EA580C", "#EAB308", "#16A34A", "#2563EB", "#7C3AED"], "builtin": true}
+  ],
+  "custom_color_limits": {"min": 2, "max": 12},
+  "size_presets": [
+    {"key": "default", "label": "原始", "width": 1920, "height": 1080},
+    {"key": "4k", "label": "4K", "width": 3840, "height": 2160},
+    {"key": "2k", "label": "2K", "width": 2560, "height": 1440},
+    {"key": "1366", "label": "1366×768", "width": 1366, "height": 768},
+    {"key": "mobile", "label": "手机竖屏", "width": 1080, "height": 1920},
+    {"key": "square", "label": "方形", "width": 1080, "height": 1080}
+  ]
+}

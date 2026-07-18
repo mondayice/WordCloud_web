@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* 浅色 —— 空格分隔 RGB 三元组 */
+    --bg: 250 250 249; /* stone-50  #FAFAF9 */
+    --surface: 255 255 255; /* #FFFFFF */
+    --border: 231 229 228; /* stone-200 #E7E5E4 */
+    --ink: 28 25 23; /* stone-900 #1C1917 */
+    --ink-muted: 87 83 78; /* stone-600 #57534E */
+    --ink-faint: 168 162 158; /* stone-400 #A8A29E */
+    --accent: 234 88 12; /* orange-600 #EA580C */
+    --accent-hover: 194 65 12; /* orange-700 #C2410C */
+
+    color-scheme: light;
+  }
+
+  .dark {
+    /* 深色 —— 亮度镜像 */
+    --bg: 12 10 9; /* stone-950 #0C0A09 */
+    --surface: 28 25 23; /* stone-900 #1C1917 */
+    --border: 41 37 36; /* stone-800 #292524 */
+    --ink: 250 250 249; /* stone-50 #FAFAF9 */
+    --ink-muted: 168 162 158; /* stone-400 #A8A29E */
+    --ink-faint: 120 113 108; /* stone-500 #78716C */
+    --accent: 251 146 60; /* orange-400 #FB923C */
+    --accent-hover: 253 186 116; /* orange-300 #FDBA74 */
+
+    color-scheme: dark;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-bg text-ink font-sans text-sm antialiased;
+  }
+
+  /* 焦点环：:focus-visible 显示 2px 橙色外环（绝不删默认 outline） */
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* 表单元素不继承 body 字体，需显式重置 */
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  /* 滚动条跟随主题（Webkit） */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--ink-faint) / 0.3);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--ink-faint) / 0.5);
+  }
+}
+
+@layer utilities {
+  /* 动效敏感：关闭所有过渡与动画（WCAG 2.1 AA 要求） */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

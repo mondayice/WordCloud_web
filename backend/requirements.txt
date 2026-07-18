@@ -1,0 +1,17 @@
+# === Web 框架 ===
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+
+# === 请求/配置 ===
+pydantic==2.9.2
+pydantic-settings==2.6.1
+python-multipart==0.0.17
+
+# === 核心算法 ===
+jieba==0.42.1
+wordcloud==1.9.3
+Pillow==11.0.0
+numpy==1.26.4              # 不用 2.x，ABI 兼容性最稳
+
+# === 编码嗅探 ===
+chardet==5.2.0

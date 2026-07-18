@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# 字体（约 16MB，不进 git）
+backend/app/fonts/*.otf
+backend/app/fonts/*.ttf
+
+# 前端构建产物（由 vite build 生成）
+backend/static/
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# 防御：src 下的 TS 编译产物（tsconfig 已 noEmit，正常不会生成）
+frontend/src/**/*.js
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 环境
+.env
+.env.local
+
+# 临时文件
+*.tmp
+*.log
+
+# 设计文档（内部资料，不进 git）
+docs/
+设计文档.md
+
+# ZCode 工具内部产物
+.zcode/

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WordCloud Studio</title>
+
+    <!-- FOUC 防闪烁：渲染前同步应用主题（必须在 CSS 之前执行） -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('wc-theme')
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+          var shouldDark = stored === 'dark' || ((stored === 'system' || !stored) && prefersDark)
+          if (shouldDark) document.documentElement.classList.add('dark')
+        } catch (e) {
+          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark')
+          }
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
